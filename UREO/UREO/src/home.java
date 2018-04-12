@@ -12,6 +12,13 @@ import javax.swing.JSplitPane;
 import javax.swing.JButton;
 import java.awt.GridLayout;
 import java.awt.Font;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
+import javax.swing.border.EtchedBorder;
+import java.awt.FlowLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 
 public class home {
 
@@ -37,15 +44,19 @@ public class home {
 	 * Create the application.
 	 */
 	public home() {
-		initialize();
+		//initialize propertyList i.e.: propretyDB propertyList = new propertyDB();
+		//initialize accountList i.e.: accountDB accountList = new accountDB();
+		
+		initialize(/* propertyList, accountList, ... etc*/);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize() // This constructor needs to be filled with things like AccountList,PropertyList
+	{
 		frame = new JFrame();
-		frame.setBounds(100, 100, 527, 441);
+		frame.setBounds(100, 100, 613, 458);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.X_AXIS));
 		
@@ -53,78 +64,124 @@ public class home {
 		frame.getContentPane().add(panel);
 		panel.setLayout(new BorderLayout(0, 0));
 		
-		JPanel panel_1 = new JPanel();
-		panel.add(panel_1, BorderLayout.NORTH);
-		panel_1.setLayout(new BoxLayout(panel_1, BoxLayout.X_AXIS));
+		JPanel headerPanel = new JPanel();
+		headerPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel.add(headerPanel, BorderLayout.NORTH);
+		headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.X_AXIS));
+		
+		JSplitPane splitPane_1 = new JSplitPane();
+		splitPane_1.setContinuousLayout(false);
+		splitPane_1.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		headerPanel.add(splitPane_1);
 		
 		JSplitPane splitPane = new JSplitPane();
+		splitPane_1.setLeftComponent(splitPane);
 		splitPane.setEnabled(false);
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
-		panel_1.add(splitPane);
 		
-		JPanel panel_2 = new JPanel();
-		splitPane.setLeftComponent(panel_2);
+		JPanel headerTitlePanel = new JPanel();
+		splitPane.setLeftComponent(headerTitlePanel);
 		
 		JLabel lblUnitedRealEstate = new JLabel("United Real Estate Online");
 		lblUnitedRealEstate.setFont(new Font("Tahoma", Font.PLAIN, 21));
-		panel_2.add(lblUnitedRealEstate);
+		headerTitlePanel.add(lblUnitedRealEstate);
 		
-		JPanel panel_3 = new JPanel();
-		splitPane.setRightComponent(panel_3);
-		panel_3.setLayout(new GridLayout(0, 4, 0, 0));
+		JPanel headerButtonPanel = new JPanel();
+		splitPane.setRightComponent(headerButtonPanel);
+		headerButtonPanel.setLayout(new GridLayout(0, 4, 0, 0));
 		
-		JButton btnNewButton_3 = new JButton("New button");
-		panel_3.add(btnNewButton_3);
+		JButton browseBtn = new JButton("Browse Properties");
+		headerButtonPanel.add(browseBtn);
 		
-		JButton btnNewButton_2 = new JButton("New button");
-		panel_3.add(btnNewButton_2);
+		JButton searchBtn = new JButton("Search");
+		headerButtonPanel.add(searchBtn);
 		
-		JButton btnNewButton = new JButton("New button");
-		panel_3.add(btnNewButton);
+		JButton contactBtn = new JButton("Contact Us");
+		headerButtonPanel.add(contactBtn);
 		
-		JButton btnNewButton_1 = new JButton("New button");
-		panel_3.add(btnNewButton_1);
+		JButton loginBtn = new JButton("Login");
+		headerButtonPanel.add(loginBtn);
 		
-		JPanel panel_4 = new JPanel();
-		panel.add(panel_4, BorderLayout.WEST);
-		panel_4.setLayout(new BoxLayout(panel_4, BoxLayout.X_AXIS));
+		JPanel headerAdPanel = new JPanel();
+		splitPane_1.setRightComponent(headerAdPanel);
+		
+		JLabel lblHeaderAdvertisement = new JLabel("Header Advertisement");
+		headerAdPanel.add(lblHeaderAdvertisement);
+		
+		JPanel adLeftPanel = new JPanel();
+		panel.add(adLeftPanel, BorderLayout.WEST);
+		adLeftPanel.setLayout(new BoxLayout(adLeftPanel, BoxLayout.X_AXIS));
 		
 		JLabel lblAdleft = new JLabel("ADLEFT");
-		panel_4.add(lblAdleft);
+		adLeftPanel.add(lblAdleft);
 		
-		JPanel panel_5 = new JPanel();
-		panel.add(panel_5, BorderLayout.EAST);
-		panel_5.setLayout(new BoxLayout(panel_5, BoxLayout.X_AXIS));
+		JPanel adRightPanel = new JPanel();
+		panel.add(adRightPanel, BorderLayout.EAST);
+		adRightPanel.setLayout(new BoxLayout(adRightPanel, BoxLayout.X_AXIS));
 		
 		JLabel lblAdright = new JLabel("ADRIGHT");
-		panel_5.add(lblAdright);
+		adRightPanel.add(lblAdright);
 		
-		JPanel panel_6 = new JPanel();
-		panel.add(panel_6, BorderLayout.SOUTH);
+		JPanel footerPanel = new JPanel();
+		panel.add(footerPanel, BorderLayout.SOUTH);
 		
 		JLabel lblFooter = new JLabel("FOOTER");
-		panel_6.add(lblFooter);
+		footerPanel.add(lblFooter);
 		
-		JPanel panel_7 = new JPanel();
-		panel.add(panel_7, BorderLayout.CENTER);
-		panel_7.setLayout(new BoxLayout(panel_7, BoxLayout.X_AXIS));
-		
-		JSplitPane splitPane_1 = new JSplitPane();
-		splitPane_1.setEnabled(false);
-		splitPane_1.setOrientation(JSplitPane.VERTICAL_SPLIT);
-		panel_7.add(splitPane_1);
-		
-		JPanel panel_8 = new JPanel();
-		splitPane_1.setLeftComponent(panel_8);
-		
-		JLabel lblBanner = new JLabel("BANNER");
-		panel_8.add(lblBanner);
-		
-		JPanel panel_9 = new JPanel();
-		splitPane_1.setRightComponent(panel_9);
+		JPanel contentPanel = new JPanel();
+		panel.add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JLabel lblContent = new JLabel("CONTENT");
-		panel_9.add(lblContent);
+		contentPanel.add(lblContent);
+		///////ACTION LISTENERS/////////
+		browseBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(e.getSource() == browseBtn) {
+					//Do the calculations here to display each property in the property list..maybe a loop
+					lblContent.setText("Property Browser!");
+					lblContent.repaint();
+					
+				}
+			}
+		});
+		
+		searchBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(e.getSource() == searchBtn) {
+		
+					lblContent.setText("Search!");
+					lblContent.repaint();
+					
+				}
+			}
+		});
+		
+		contactBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(e.getSource() == contactBtn) {
+		
+					lblContent.setText("ContactUs!");
+					lblContent.repaint();
+					
+				}
+			}
+		});
+				
+		loginBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(e.getSource() == loginBtn) {
+		
+					lblContent.setText("Login!");
+					lblContent.repaint();
+					
+				}
+			}
+		});		
+		
+///////////////////END OF ACTIONLISTENER///////////////////
+		
+		
 	}
 
 }
