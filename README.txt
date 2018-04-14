@@ -1,9 +1,7 @@
 We will be designing the protoype using Swing through WINDOWS BUILDER, which is an eclipse plugin. It shouldn't be hard to use but you have to be very careful.
-<<<<<<< HEAD
-It is recommended that you use UMPLE for code-generation based on the model diagram if you need it.
-=======
+
 It is recommended that you use UMPLE for code-generation based on the model diagram.
->>>>>>> refs/remotes/origin/master
+ 
 
 To install UMPLE as a plugin for Eclipse, follow this:
 https://cruise.eecs.uottawa.ca/umpleonline/download_eclipse_umple_plugin.shtml
